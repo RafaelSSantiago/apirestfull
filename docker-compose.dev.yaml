@@ -1,0 +1,26 @@
+services:
+  api:
+    container_name: "api-service"
+    build:
+      context: .
+      dockerfile: Dockerfile.dev      
+    ports:
+      - "8080:3000"
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/home/node/app
+    command: npm run dev
+
+  mongodb:
+    container_name: "mongo-db"
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

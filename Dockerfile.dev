@@ -1,0 +1,16 @@
+FROM node:20.11.1-slim
+
+RUN apt update && \
+    apt install -y curl && \
+    npm install -g nodemon
+
+COPY start.sh /
+RUN chmod +x /start.sh
+
+USER node
+
+EXPOSE 3000
+
+WORKDIR /home/node/app
+
+CMD [ "/start.sh" ]
