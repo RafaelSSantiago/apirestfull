@@ -4,9 +4,15 @@ import { authMiddleware } from "../middlewares/auth.middleware";
 
 const router = Router();
 
+router.options("/*", (req: Request, res: Response) => {
+    res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.sendStatus(200);
+})
+
 router.post("/signup", async (req: Request, res: Response, next: NextFunction) => {
   try {
-    UserController.createUser(req, res);
+    await UserController.createUser(req, res);
   } catch (error) {
     next(error);
   }
