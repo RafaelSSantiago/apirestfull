@@ -11,7 +11,8 @@
     "forceConsistentCasingInFileNames": true /* Garante que os arquivos sejam referenciados com a mesma capitalização */,
     "strictPropertyInitialization": false /* Permite a inicialização de propiedades sem valor atribuido em uma classe*/,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "typeRoots": ["./src/types", "./node_modules/@types"]
   },
   "include": ["src/**/*"] /* Define quais arquivos/pastas serão incluídos na compilação */,
   "exclude": ["node_modules", "**/*.spec.ts"] /* Define quais arquivos/pastas serão excluídos da compilação */

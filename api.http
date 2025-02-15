@@ -35,7 +35,7 @@ Accept: application/json
 Origin: http://localhost:8080
 
 {
-    "email": "teste@teste.com",
+    "email": "santiago@santiago.com",
     "password": "123456"
 }
 
@@ -44,28 +44,30 @@ Origin: http://localhost:8080
 # @name Get User by Token (rota protegida)
 GET {{baseUrl}}/users
 Content-Type: application/json
+Origin: http://localhost:8080
 Accept: application/json
-Authorization: Bearer <coloque_seu_token_aqui>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjExZGJlZjQxNmI3ZjRjMjczMzI5OCIsImVtYWlsIjoic2FudGlhZ29Ac2FudGlhZ28uY29tIiwiaWF0IjoxNzM5NjYwNzY5LCJleHAiOjE3Mzk3NDcxNjl9.YIJ1292HutbgPPs18fwF_yd_17jpee88jPJ6TSwXMsw
 
 ###
 
 # @name Get User by ID (rota protegida)
-GET {{baseUrl}}/users/<USER_ID>
+GET {{baseUrl}}/users/67b11dbef416b7f4c2733298
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjEwMjBiOWFmYTg1MGZlMmM1MzBhMyIsImVtYWlsIjoidGVzdGVAdGVzdGUuY29tIiwiaWF0IjoxNzM5NjUzNzc1LCJleHAiOjE3Mzk3NDAxNzV9.OVNvfkhKISo10tiysPWQEv3MVRuFzJODMKdayBnpBQs
+Origin: http://localhost:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjExZGJlZjQxNmI3ZjRjMjczMzI5OCIsImVtYWlsIjoic2FudGlhZ29Ac2FudGlhZ28uY29tIiwiaWF0IjoxNzM5NjYwNzY5LCJleHAiOjE3Mzk3NDcxNjl9.YIJ1292HutbgPPs18fwF_yd_17jpee88jPJ6TSwXMsw
 
 ###
 
 # @name Update User (rota protegida)
-PATCH {{baseUrl}}/users/<USER_ID>
+PATCH {{baseUrl}}/users/67b11dbef416b7f4c2733298
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer <coloque_seu_token_aqui>
+Origin: http://localhost:8080
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjExZGJlZjQxNmI3ZjRjMjczMzI5OCIsImVtYWlsIjoic2FudGlhZ29Ac2FudGlhZ28uY29tIiwiaWF0IjoxNzM5NjYwNzY5LCJleHAiOjE3Mzk3NDcxNjl9.YIJ1292HutbgPPs18fwF_yd_17jpee88jPJ6TSwXMsw
 
 {
-    "name": "Novo Nome",
-    "email": "novoteste@teste.com"
+    "name": "Rafael silva santiago"
 }
 
 ###

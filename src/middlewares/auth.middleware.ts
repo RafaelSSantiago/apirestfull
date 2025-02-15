@@ -1,25 +1,18 @@
 import { Request, Response, NextFunction } from "express";
 import { verifyToken } from "../utils/token.util";
 
-export interface AuthRequest extends Request {
-  user?: {
-    id: string;
-    email: string;
-  };
-}
-
-export const authMiddleware = (req: AuthRequest, res: Response, next: NextFunction): void => {
+export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    res.status(401).json({ message: "Token não fornecido." });
-    return
+    res.status(401).json({ message: "Token not provided." });
+    return;
   }
 
   const [, token] = authHeader.split(" ");
 
   const decoded = verifyToken(token);
-  req.user = {
+  req.jwtTokenUser = {
     id: decoded.id,
     email: decoded.email,
   };
@@ -27,7 +20,7 @@ export const authMiddleware = (req: AuthRequest, res: Response, next: NextFuncti
   if (decoded) {
     next();
   } else {
-     res.status(401).json({ message: "Token inválido." });
-     return;
+    res.status(401).json({ message: "Invalid Token." });
+    return;
   }
 };

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { User } from "../models/user.model";
-import { generateToken } from "../utils/token.util";
+import { generateToken, verifyToken } from "../utils/token.util";
 
 export class UserController {
   public static async createUser(req: Request, res: Response): Promise<Response> {
@@ -73,7 +73,8 @@ export class UserController {
   }
 
   public static async getUserById(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
+    const { id } = req.jwtTokenUser || req.params;
+
     const user = await User.findById(id, { password: 0 });
 
     if (!user) {
@@ -94,7 +95,6 @@ export class UserController {
     }
 
     return res.status(200).json({
-      message: "Usuário atualizado com sucesso.",
       user: updatedUser,
     });
   }

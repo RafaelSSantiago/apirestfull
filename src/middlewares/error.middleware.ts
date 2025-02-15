@@ -13,7 +13,7 @@ export const errorHandler = (err: CustomError, req: Request, res: Response, next
     statusCode = 400;
     message = err.details.get("body")?.details.map((errors) => errors.message);
   }
-
+  console.log(err)
   res.status(statusCode).json({
     status: "error"
   });

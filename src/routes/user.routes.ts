@@ -27,7 +27,7 @@ router.post(
   "/signin",
   validate(loginUserDto),
   asyncHandler(async (req: Request, res: Response) => {
-    UserController.loginUser(req, res);
+    await UserController.loginUser(req, res);
   })
 );
 
@@ -36,29 +36,29 @@ router.use(authMiddleware);
 router.get(
   "/",
   asyncHandler(async (req: Request, res: Response) => {
-    UserController.getUserById(req, res);
+    await UserController.getUserById(req, res);
   })
 );
 
 router.get(
   "/:id",
   asyncHandler(async (req: Request, res: Response) => {
-    UserController.getUserById(req, res);
+    await UserController.getUserById(req, res);
   })
 );
 
 router.patch(
   "/:id",
-  validate(updatedUserDto),
   asyncHandler(async (req: Request, res: Response) => {
-    UserController.updateUser(req, res);
+    console.log("aqui")
+    await UserController.updateUser(req, res);
   })
 );
 
 router.delete(
   "/:id",
   asyncHandler(async (req: Request, res: Response) => {
-    void UserController.deleteUser(req, res);
+    void await UserController.deleteUser(req, res);
   })
 );
 
