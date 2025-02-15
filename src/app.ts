@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.routes";
 import { Request, Response, NextFunction } from "express";
@@ -53,11 +52,11 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-app.use(errorHandler);
-
 app.use(responseMiddleware);
 
 app.use("/users", userRoutes);
+
+app.use(errorHandler);
 
 app.get("/", (req, res) => {
   res.send("API ON");

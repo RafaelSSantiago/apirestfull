@@ -1,10 +1,19 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { User } from "../models/user.model";
 import { generateToken } from "../utils/token.util";
 
 export class UserController {
   public static async createUser(req: Request, res: Response): Promise<Response> {
+    const body = req.body as { name: string; email: string; password: string };
+
+    for (const [field, value] of Object.entries(body)) {
+      if (value.length > 0) {
+        console.log("oiiiiiiiii");
+        res.status(400).json({ message: `The field ${field} dont be undefined or null` });
+      }
+    }
+
     const { name, email, password } = req.body;
 
     const existingUser = await User.findOne({ email });

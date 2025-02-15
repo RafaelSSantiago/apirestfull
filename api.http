@@ -4,9 +4,10 @@
 POST {{baseUrl}}/users/signup
 Content-Type: application/json
 Accept: application/json
+Origin: http://localhost:8080
 
 {
-    "name": "Santiago",
+    "name": "",
     "email": "Santiago@santiago.com",
     "password": "123456"
 }
