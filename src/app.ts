@@ -5,6 +5,7 @@ import { Request, Response, NextFunction } from "express";
 import { errorHandler } from "./middlewares/error.middleware";
 import { responseMiddleware } from "./middlewares/reponse.middleware";
 import { defaultCorsOptions } from "./middlewares/cors";
+import { errors } from "celebrate";
 dotenv.config();
 
 const app = express();
@@ -57,7 +58,6 @@ app.use(responseMiddleware);
 app.use("/users", userRoutes);
 
 app.use(errorHandler);
-
 app.get("/", (req, res) => {
   res.send("API ON");
 });
