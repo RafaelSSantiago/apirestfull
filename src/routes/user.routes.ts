@@ -4,8 +4,12 @@ import { authMiddleware } from "../middlewares/auth.middleware";
 
 const router = Router();
 
-router.post("/signup", async (req: Request, res: Response) => {
-  UserController.createUser(req, res);
+router.post("/signup", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    UserController.createUser(req, res);
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.post("/signin", async (req: Request, res: Response) => {

@@ -1,26 +1,38 @@
 services:
   api:
-    container_name: "api-service"
     build:
       context: .
-      dockerfile: Dockerfile.dev      
+      dockerfile: Dockerfile.dev
+    command: npm run dev
+    restart: always
     ports:
       - "8080:3000"
+    develop:
+      watch: ## Define as configurações de observação de arquivos
+        - action: sync ##Executa duas ações quando detecta mudanças
+          path: . ## Observa todos os arquivos no diretório atual
+          target: /home/node/app ##Define o diretório de destino dentro do container
     env_file:
       - .env
     depends_on:
-      - mongodb
-    volumes:
-      - .:/home/node/app
-    command: npm run dev
+      mongodb:
+        condition: service_healthy
+        restart: true
 
   mongodb:
     container_name: "mongo-db"
     image: mongo:5.0
+    restart: always
     ports:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
 volumes:
   mongo-data:
