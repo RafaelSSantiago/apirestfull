@@ -5,7 +5,6 @@ import asyncHandler from "express-async-handler";
 import { validate } from "../middlewares/validation.middleware";
 import { createUserDto } from "../dtos/create-user.dto";
 import { loginUserDto } from "../dtos/login-user.dto";
-import { updatedUserDto } from "../dtos/update-user.dto";
 
 const router = Router();
 

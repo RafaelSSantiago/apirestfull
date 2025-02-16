@@ -6,13 +6,19 @@ import { errorHandler } from "./middlewares/error.middleware";
 import { responseMiddleware } from "./middlewares/reponse.middleware";
 import { defaultCorsOptions } from "./middlewares/cors";
 import { errors } from "celebrate";
+import { setupSwagger } from "./swagger";
 dotenv.config();
 
 const app = express();
 app.use(express.json());
+setupSwagger(app);
 
 app.use((req, res, next) => {
   if (req.method === "OPTIONS") {
+    return next();
+  }
+
+  if (req.path === "/api-docs/") {
     return next();
   }
 
